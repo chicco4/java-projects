@@ -1,0 +1,1 @@
+﻿Il seguente è un programma di prova sul java AWT.
