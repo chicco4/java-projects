@@ -14,6 +14,7 @@ public class ProvaAWT2 {
         ListaConcatenata c = load("input.txt");
         FrameLista f = new FrameLista("ProvaLista",c);
         f.setVisible(true);
+        
     }
 
     public static ListaConcatenata load(String fileName) {

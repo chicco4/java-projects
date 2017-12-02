@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -90,6 +92,16 @@ class FrameLista extends Frame implements ActionListener {
         }
         );
     }
+    public void printOut(){
+        PrintWriter p;
+        try {
+            p = new PrintWriter("Output.txt");
+            p.println(c.toString());
+            p.close();
+        } catch (FileNotFoundException ex) {
+            System.err.println("File not Found");
+        }
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn0) {
@@ -145,7 +157,7 @@ class FrameLista extends Frame implements ActionListener {
             }  
             lbl1.setText(""+c.get(pointer));
         } else if (e.getSource() == btn6) {
-            if(txt0.getText()!=""){
+            if(!"".equals(txt0.getText())){
                 c.addTail(txt0.getText());
                 txt0.setText("");
                 this.lbl0.setText(""+c.size());
@@ -172,16 +184,7 @@ class FrameLista extends Frame implements ActionListener {
                     this.btn0.setBackground(Color.RED);
                     this.btn3.setBackground(Color.RED);
                 }else if(pointer-1>0){
-                    if(pointer-1>=c.size()-1){
-                        this.c.remove(pointer);
-                        this.lbl0.setText(""+c.size());
-                        this.pointer=this.pointer-1;
-                        lbl1.setText(""+c.get(pointer));
-                        this.btn2.setBackground(Color.RED);
-                        this.btn5.setBackground(Color.RED);
-                        this.btn0.setBackground(Color.GREEN);
-                        this.btn3.setBackground(Color.GREEN);
-                    }else{
+                    if(pointer-1<c.size()-1){
                         this.c.remove(pointer);
                         this.lbl0.setText(""+c.size());
                         this.pointer=this.pointer-1;
@@ -190,9 +193,17 @@ class FrameLista extends Frame implements ActionListener {
                         this.btn5.setBackground(Color.GREEN);
                         this.btn0.setBackground(Color.GREEN);
                         this.btn3.setBackground(Color.GREEN);
+                    }else{
+                        this.c.remove(pointer);
+                        this.lbl0.setText(""+c.size());
+                        this.pointer=this.pointer-1;
+                        lbl1.setText(""+c.get(pointer));
+                        this.btn2.setBackground(Color.RED);
+                        this.btn5.setBackground(Color.RED);
+                        this.btn0.setBackground(Color.GREEN);
+                        this.btn3.setBackground(Color.GREEN);
                     }
                 }
-                this.btn8.setBackground(Color.GREEN);
             }else{
                 this.btn8.setBackground(Color.RED);
             }if(c.size()<=1){
@@ -216,5 +227,6 @@ class FrameLista extends Frame implements ActionListener {
                 this.btn3.setBackground(Color.GREEN);
             }
         }*/
+        printOut();
     }
 }
