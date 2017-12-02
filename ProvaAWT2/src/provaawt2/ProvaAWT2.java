@@ -12,9 +12,8 @@ public class ProvaAWT2 {
 
     public static void main(String[] args) {
         ListaConcatenata c = load("input.txt");
-        FrameLista f = new FrameLista("ProvaLista",c);
+        FrameLista f = new FrameLista("ProvaLista", c);
         f.setVisible(true);
-        
     }
 
     public static ListaConcatenata load(String fileName) {
@@ -39,7 +38,6 @@ public class ProvaAWT2 {
                     }
                 }
             }
-            System.out.println(c.toString());
             return c;
         } catch (FileNotFoundException ex) {
             System.err.println("File not found");
