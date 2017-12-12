@@ -1,5 +1,6 @@
 package provaawt3;
 
+import java.util.Iterator;
 import java.util.Stack;
 
 /**
@@ -13,7 +14,7 @@ public class ProvaAWT3 {
         s.add("1");
         s.add("2");
         FramePila f = new FramePila("GestionePila",s);
-	f.setVisible(true);
+	f.setVisible(true);        
     }
     
 }
