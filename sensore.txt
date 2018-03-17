@@ -1,0 +1,32 @@
+unsigned int counter=0;
+char mm;
+void main() {
+     //per il sensore
+     Uart1_Init(9600);
+     ADCON1=15;
+     TRISD=0x00000010;
+     LATD=255;
+
+     while(1){
+          counter=0;
+          
+          //impulso di trigger
+          LATD.B0=1;
+          Delay_us(20);
+          LATD.B0=0;
+          //calcolo
+          while(portd.b1==0){};
+          
+          while(portd.B1==1){
+               counter++;
+          };
+          //convert counter in char
+          IntToStr(counter,mm);
+          //invio mm al terminale UART nel PC
+          UART1_Write_Text(mm);
+          UART1_Write(13);
+          UART1_Write(10);
+          
+          Delay_ms(200);
+          }
+}
